@@ -62,19 +62,19 @@
 </html> -->
 
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+    <head>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
 
-    <style>
-      
-    </style>
-    <title>AR demo</title>
+        <style>
+        </style>
+        <title>AR demo</title>
 
-  </head>
+      </head>
   <body>
       <a-scene mindar-image="imageTargetSrc: docs/assets/images/targets.mind; filterMinCF:0.01; filterBeta: 10" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
           <a-assets>
@@ -83,7 +83,7 @@
             <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
             <img id="icon-profile" src="/static/profile.png" />
             <img id="icon-play" src="/static/play.png" />
-            <video id="video-drone" autoplay loop="true" src="docs/assets/videos/building-the-codrone.mp4"></video>
+            <video id="video-drone" autoplay loop="true" src="docs/assets/videos/building-the-codrone.mp4" webkit-playsinline></video>
           </a-assets>
 
           <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -97,7 +97,7 @@
           </a-entity>
 
           <a-entity mindar-image-target="targetIndex: 2">
-              <a-video src="#video-drone" width="16" height="9" position="0 0 -20"></a-video>
+              <a-video src="#video-drone" width="8" height="4.5" position="0 0 0"></a-video>
             <a-image visible=true id="profile-button" class="clickable" src="#icon-profile" rotation="-45 0 0" position="3 -8 0" height="2" width="2"
                      animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
             </a-image>
