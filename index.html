@@ -76,14 +76,14 @@
 
   </head>
   <body>
-      <a-scene mindar-image="imageTargetSrc: docs/assets/images/targets.mind; filterMinCF:0.1; filterBeta: 10" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
+      <a-scene mindar-image="imageTargetSrc: docs/assets/images/targets.mind; filterMinCF:0.01; filterBeta: 10" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
           <a-assets>
             <a-asset-item id="avatarModel" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Fox/glTF/Fox.gltf"></a-asset-item>
             <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
             <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
             <img id="icon-profile" src="/static/profile.png" />
             <img id="icon-play" src="/static/play.png" />
-            <video id="video-drone" autoplay loop="true" src="https://www.youtube.com/watch?v=HAXq1gBO3I8"></video>
+            <video id="video-drone" autoplay loop="true" src="docs/assets/videos/building-the-codrone.mp4"></video>
           </a-assets>
 
           <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
