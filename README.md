@@ -1,11 +1,11 @@
 # Augmented reality - demo
 
 ## Target images
-![Agility & Innovation](./public/images/Innovations_logo.png) <br><br>
+![Agility & Innovation](docs/assets/images/Innovations_logo.png) <br><br>
 -----
-![Erste Digital](./public/images/ErsteDigital_logo.png) <br><br>
+![Erste Digital](docs/assets/images/ErsteDigital_logo.png) <br><br>
 -----
-![Drone box](./public/images/DroneImg_Box_resized.jpg) <br><br>
+![Drone box](docs/assets/images/DroneImg_Box_resized.jpg) <br><br>
 
 
 
