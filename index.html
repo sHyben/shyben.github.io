@@ -61,7 +61,7 @@
     </body>
 </html> -->
 
-<html>
+<html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
@@ -72,6 +72,7 @@
     <style>
       
     </style>
+    <title>AR demo</title>
 
   </head>
   <body>
@@ -90,11 +91,11 @@
         <a-entity mindar-image-target="targetIndex: 1">
           <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.1 0.1 0.1" src="#bearModel" animation-mixer>
           <a-image visible=true id="profile-button" class="clickable" src="#icon-profile" rotation="-45 0 0" position="3 -8 0" height="2" width="2"
-            animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-          ></a-image>
+            animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+          </a-image>
           <a-image visible=true id="play-button" class="clickable" src="#icon-play" rotation="-45 0 0" position="-6 -8 0" height="2" width="2"
-            animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-          ></a-image>
+            animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+          </a-image>
         </a-entity>
         <a-entity mindar-image-target="targetIndex: 2">
           <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.1 0.1 0.1" src="#raccoonModel" animation-mixer>
