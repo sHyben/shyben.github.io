@@ -5,6 +5,12 @@ AFRAME.registerComponent('markerhandler', {
       const aEntity = document.querySelector("#animated-model");
       const scene = document.querySelector('#scene');
 
+      const video = document.querySelector("#testVideo");
+
+      video.addEventListener("click", (e) => {
+          console.log("marker found");
+      });
+
       sceneEl.addEventListener("markerFound", (e) => {
         console.log("marker found");
           isMarkerVisible = true;
