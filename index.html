@@ -69,41 +69,39 @@
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
-
+        <title>AR demo</title>
         <style>
         </style>
-        <title>AR demo</title>
-
-      </head>
+    </head>
   <body>
       <a-scene mindar-image="imageTargetSrc: docs/assets/images/targets.mind; filterMinCF:0.01; filterBeta: 10" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
           <a-assets>
-            <a-asset-item id="avatarModel" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Fox/glTF/Fox.gltf"></a-asset-item>
-            <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
-            <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
-            <img id="icon-profile" src="/static/profile.png" />
-            <img id="icon-play" src="/static/play.png" />
-            <video id="video-drone" autoplay loop="true" src="docs/assets/videos/building-the-codrone.mp4" webkit-playsinline></video>
+              <a-asset-item id="avatarModel" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Fox/glTF/Fox.gltf"></a-asset-item>
+              <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
+              <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
+              <img id="icon-profile" src="/static/profile.png" />
+              <img id="icon-play" src="/static/play.png" />
+              <video id="video-drone" autoplay loop="true" src="docs/assets/videos/Erste_Digital_commercial.mp4" webkit-playsinline></video>
           </a-assets>
 
           <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
           <a-entity mindar-image-target="targetIndex: 0">
-            <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.1 0.1 0.1" src="#bearModel" animation-mixer>
+              <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.1 0.1 0.1" src="#bearModel" animation-mixer>
           </a-entity>
 
           <a-entity mindar-image-target="targetIndex: 1">
-            <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.1 0.1 0.1" src="#raccoonModel" animation-mixer>
+              <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.1 0.1 0.1" src="#raccoonModel" animation-mixer>
           </a-entity>
 
           <a-entity mindar-image-target="targetIndex: 2">
-              <a-video src="#video-drone" width="160" height="90" position="0 0 0"></a-video>
-            <a-image visible=true id="profile-button" class="clickable" src="#icon-profile" rotation="-45 0 0" position="3 -8 0" height="2" width="2"
+              <a-video src="#video-drone" width="4" height="2.25" position="0 0 0"></a-video>
+              <a-image visible=true id="profile-button" class="clickable" src="#icon-profile" rotation="-45 0 0" position="3 -8 0" height="2" width="2"
+                       animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+              </a-image>
+              <a-image visible=true id="play-button" class="clickable" src="#icon-play" rotation="-45 0 0" position="-6 -8 0" height="2" width="2"
                      animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
-            </a-image>
-            <a-image visible=true id="play-button" class="clickable" src="#icon-play" rotation="-45 0 0" position="-6 -8 0" height="2" width="2"
-                     animation="property: scale; to: 2 2 2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
-            </a-image>
+              </a-image>
           </a-entity>
       </a-scene>
   </body>
