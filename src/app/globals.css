@@ -1,0 +1,67 @@
+@import '../lib/tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* ── Focus ring — keyboard navigation ── */
+:focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Skip-nav link ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: var(--color-rust);
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* ── Section anchors — offset for sticky nav ── */
+section[id] {
+  scroll-margin-top: 72px;
+}

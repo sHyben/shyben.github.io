@@ -1,0 +1,176 @@
+/* ── Projects Section ── */
+.section {
+  padding: 5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.sectionLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-rust);
+  margin: 0 0 0.5rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ── Card ── */
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  cursor: pointer;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.thumbnailLink {
+  display: block;
+  text-decoration: none;
+}
+
+/* Square aspect ratio */
+.thumbnail {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+}
+
+.thumbnailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-hover);
+}
+
+/* Hover overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 10, 8, 0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.thumbnail:hover .overlay {
+  opacity: 1;
+}
+
+.overlayTitle {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.overlayHint {
+  color: var(--color-rust);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ── Card Footer ── */
+.cardFooter {
+  padding: 1rem 0.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.cardTitleLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-hover);
+}
+
+.cardTitleLink:hover {
+  color: var(--color-rust);
+}
+
+.cardDesc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.5rem;
+  line-height: 1.5;
+}
+
+/* ── GitHub Button ── */
+.githubBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  width: fit-content;
+  transition: border-color var(--transition-hover), color var(--transition-hover),
+    box-shadow var(--transition-hover), background-color var(--transition-hover);
+}
+
+.githubBtn:hover {
+  border-color: var(--color-rust);
+  color: var(--color-rust);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px oklch(0.58 0.16 35 / 0.12);
+}

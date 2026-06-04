@@ -1,0 +1,129 @@
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 5rem 1.5rem 4rem;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.greeting {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-rust);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+}
+
+/* Rust accent on last name — handled via CSS word-break */
+.name::first-line {
+  color: var(--color-rust);
+}
+
+.tagline {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--color-rust);
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.bio {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 0 2.5rem;
+  line-height: 1.7;
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.75rem;
+  background: var(--color-rust);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color var(--transition-hover), transform var(--transition-hover);
+}
+
+.ctaPrimary:hover {
+  background: var(--color-rust-hover);
+  transform: translateY(-2px);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.75rem;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: border-color var(--transition-hover), color var(--transition-hover),
+    transform var(--transition-hover);
+}
+
+.ctaSecondary:hover {
+  border-color: var(--color-rust);
+  color: var(--color-rust);
+  transform: translateY(-2px);
+}
+
+/* Decorative large background circle */
+.accent {
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.58 0.16 35 / 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    padding: 4rem 1.25rem 3rem;
+    text-align: center;
+  }
+
+  .cta {
+    justify-content: center;
+  }
+
+  .bio {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
