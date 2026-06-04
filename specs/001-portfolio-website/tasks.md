@@ -49,8 +49,9 @@ depend on. No user story work can begin until this phase is complete.
 
 - [ ] T009 Create `src/lib/utils.ts` exporting: `cn()` (class-name merger using `clsx`/`tailwind-merge`), and `getProjectBySlug(slug: string)` helper that finds a project from the imported `projects` array
 - [ ] T010 Create `src/app/globals.css`: import `tokens.css`, Tailwind base/components/utilities directives, base `body` styles using token variables, global focus-ring style for keyboard navigation
-- [ ] T011 Create `src/app/layout.tsx`: root `<html lang="en">` with `data-theme` attribute, anti-FOWT inline `<script>` in `<head>` (reads `localStorage` → `prefers-color-scheme` → defaults `'light'`; sets `data-theme` before paint), `<body>` with `ThemeProvider` context wrapper, `<Navbar />`, `{children}`, `<Footer />` slots; set `<title>` and `<meta>` from `personalInfo`
-- [ ] T012 [P] Create `src/components/nav/Navbar.tsx`: sticky top nav with logo/name link, navigation links (Projects, About, Contact) as anchor links (`/#projects`, `/#about`, `/#contact`), Resume download button linking to `resumePdfPath` (disabled + tooltip if null), light/dark toggle button with sun/moon icons; reads theme from `ThemeContext`
+- [ ] T016 Create `src/context/ThemeContext.tsx`: React context exposing `theme` state and `toggleTheme()` function; syncs to `localStorage` and `data-theme` on `<html>` on each toggle; export `ThemeProvider` wrapper and `useTheme()` hook
+- [ ] T011 Create `src/app/layout.tsx`: root `<html lang="en">` with `data-theme` attribute, anti-FOWT inline `<script>` in `<head>` (reads `localStorage` → `prefers-color-scheme` → defaults `'light'`; sets `data-theme` before paint), `<body>` with `<ThemeProvider>` (from T016) context wrapper, `<Navbar />`, `{children}`, `<Footer />` slots; set `<title>` and `<meta>` from `personalInfo`
+- [ ] T012 [P] Create `src/components/nav/Navbar.tsx`: sticky top nav with logo/name link, navigation links (Projects, About, Contact) as anchor links (`/#projects`, `/#about`, `/#contact`), a resume button slot (render `null` initially — full conditional logic added in T031), light/dark toggle button with sun/moon icons reading `useTheme()` from `ThemeContext`
 - [ ] T013 [P] Create `src/components/nav/Navbar.module.css`: sticky positioning, backdrop blur, nav link hover styles using `--color-rust`, responsive hamburger menu for mobile
 
 **Checkpoint**: Root layout renders with nav and footer; theme toggle works. All stories can now start.
@@ -70,8 +71,7 @@ nav links (#projects, #about, #contact) scroll to placeholder sections.
 
 - [ ] T014 [P] [US1] Create `src/components/hero/Hero.tsx`: display name "Šimon Hyben" in rust accent using editorial display font weight; tagline below; CTA button; implement Framer Motion stagger container + item variants (`initial: { opacity: 0, y: 20 }` → `animate: { opacity: 1, y: 0 }`) for sequential hero element entrance
 - [ ] T015 [P] [US1] Create `src/components/hero/Hero.module.css`: full-width section, display typography scale, rust colour on name, responsive layout (centered mobile, left-aligned desktop)
-- [ ] T016 [US1] Create `src/context/ThemeContext.tsx` (or integrate into `layout.tsx`): React context exposing `theme` state and `toggleTheme()` function; syncs to `localStorage` and `data-theme` on `<html>` on each toggle
-- [ ] T017 [US1] Create `src/app/page.tsx` shell with `<Hero />` component integrated, and empty `<section id="projects">`, `<section id="about">`, `<section id="contact">` anchor targets
+- [ ] T017 [US1] Create `src/app/page.tsx`: import and render `<Hero />` as the first visible section; add empty `<section id="projects" />`, `<section id="about" />`, `<section id="contact" />` anchor targets below it so navbar links resolve correctly (these sections will be populated in US2–US4 phases)
 
 **Checkpoint**: US1 fully functional and testable independently — hero renders, animations play,
 theme toggle works and persists, nav links reach anchor sections.
@@ -89,7 +89,7 @@ animations play when cards scroll into view.
 
 ### Implementation for User Story 2
 
-- [ ] T018 [P] [US2] Create `src/components/projects/ProjectCard.tsx`: square aspect-ratio card; `<img>` with `loading="lazy"` for thumbnail; inline diagonal-stripe SVG data-URI as `onError` fallback; `<motion.div whileHover={{ scale: 1.07 }}>` for zoom; semi-transparent title overlay `<motion.div>` that fades in on hover using `variants`; `<GitHubButton>` below card; `<Link href={/projects/${slug}/}>` wrapping the thumbnail
+- [ ] T018 [P] [US2] Create `src/components/projects/ProjectCard.tsx`: square aspect-ratio card; `<img>` with `loading="lazy"` for thumbnail; inline diagonal-stripe SVG data-URI as `onError` fallback; `<motion.div whileHover={{ scale: 1.07 }} transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}>` for zoom (≈200ms ease-equivalent per constitution Principle IV); semi-transparent title overlay `<motion.div>` that fades in on hover using `variants`; `<GitHubButton>` below card; `<Link href={/projects/${slug}/}>` wrapping the thumbnail
 - [ ] T019 [P] [US2] Create `src/components/projects/GitHubButton.tsx`: styled button with GitHub icon SVG; rust-accent hover effect (background-color shift + subtle box-shadow glow on hover via CSS transition); `target="_blank" rel="noopener noreferrer"`; accepts `href` and `label` props
 - [ ] T020 [P] [US2] Create `src/components/projects/projects.module.css`: responsive CSS grid (1 column → 2 tablet → 3 desktop); card overflow-hidden + border-radius; GitHub button base styles
 - [ ] T021 [US2] Create `src/components/projects/ProjectsGrid.tsx`: maps `projects` array → `<ProjectCard>`; wraps grid in Framer Motion `motion.div` with `whileInView` stagger container so cards animate in as section scrolls into viewport (`once: true`); `viewport={{ once: true, margin: '-100px' }}`
@@ -135,7 +135,7 @@ email card href is `mailto:hyben.simon@gmail.com`; LinkedIn card opens correct U
 - [ ] T028 [P] [US4] Create `src/components/contact/Contact.tsx`: renders exactly 4 info cards — Email (`<a href="mailto:hyben.simon@gmail.com">`), LinkedIn (`<a href={linkedInUrl} target="_blank">`), GitHub (`<a href={githubUrl} target="_blank">`), Location (non-link display card); each card has icon, label, and value
 - [ ] T029 [P] [US4] Create `src/components/contact/Contact.module.css`: card grid (2 columns desktop, 1 mobile); card styles with border, hover lift effect
 - [ ] T030 [P] [US4] Create `src/components/footer/Footer.tsx`: developer name, brief nav links (Projects, About, Contact), GitHub profile link, copyright year; reads `personalInfo.name` and `personalInfo.githubUrl`
-- [ ] T031 [US4] Add Resume/CV download button to `src/components/nav/Navbar.tsx` (already has slot) and/or hero area: `<a href={resumePdfPath} download>Download CV</a>` when `resumePdfPath` is non-null; `<button disabled title="Resume coming soon">` when null; style consistently with rust accent
+- [ ] T031 [US4] Implement Resume/CV download button in the slot added by T012 in `src/components/nav/Navbar.tsx`: render `<a href={resumePdfPath} download="resume.pdf" className={styles.resumeBtn}>Download CV</a>` when `personalInfo.resumePdfPath` is non-null; render `<button disabled aria-describedby="resume-tooltip" className={styles.resumeBtn}>Download CV<span id="resume-tooltip" role="tooltip">Resume coming soon</span></button>` when null; add `.resumeBtn` styles to `Navbar.module.css`
 - [ ] T032 [US4] Integrate `<About />`, `<Contact />`, and `<Footer />` into `src/app/page.tsx` inside their respective section anchors; ensure `<Footer />` is in `layout.tsx` (already wired in T011)
 
 **Checkpoint**: US4 fully functional — all sections visible; resume button disabled with tooltip;
@@ -147,7 +147,7 @@ email card links correctly; skills grid shows all 7 categories.
 
 **Purpose**: Accessibility, SEO, documentation, and final build validation.
 
-- [ ] T033 [P] Accessibility pass: add `aria-label` to all icon-only buttons (theme toggle, GitHub button); add `<a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>` link in `layout.tsx`; verify all `<img>` elements have non-empty `alt` attributes
+- [ ] T033 [P] Accessibility pass: (a) add `aria-label` to all icon-only buttons (theme toggle, GitHub button); (b) add `<a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>` in `layout.tsx`; (c) verify all `<img>` elements have non-empty `alt` attributes; (d) verify `--color-rust` token achieves ≥ 4.5:1 contrast against `--color-bg` in both light and dark themes using a contrast checker (e.g., browser DevTools Accessibility panel or `npx color-contrast-checker`) — adjust token values in `src/lib/tokens.css` if any ratio fails
 - [ ] T034 [P] Add SEO meta tags to `src/app/layout.tsx`: `<meta name="description">`, `<meta property="og:title">`, `<meta property="og:description">`, `<meta property="og:type" content="website">`, `<link rel="canonical">`; all populated from `personalInfo`
 - [ ] T035 [P] Verify Framer Motion `prefers-reduced-motion` — wrap all motion components to respect `useReducedMotion()` hook; set `transition: { duration: 0 }` when reduced motion is preferred
 - [ ] T036 [P] Write `README.md` at repo root documenting: local dev (`npm run dev`), build (`npm run build`), GitHub Pages deployment, how to add/update a project (edit `src/data/projects.ts`), how to add resume PDF, how to change contact info, `NEXT_PUBLIC_BASE_PATH` env var for sub-path deployments
@@ -187,11 +187,11 @@ email card links correctly; skills grid shows all 7 categories.
 # Phase 1 — run in parallel:
 T003 (tailwind.config.ts)  +  T004 (tokens.css)  +  T005 (types/index.ts)  +  T007 (placeholder assets)  +  T008 (deploy.yml)
 
-# Phase 2 — run in parallel after T009:
-T012 (Navbar.tsx)  +  T013 (Navbar.module.css)
+# Phase 2 — sequence within Foundational:
+T016 (ThemeContext)  →  T011 (layout.tsx) ; then in parallel: T012 (Navbar.tsx)  +  T013 (Navbar.module.css)
 
-# Phase 3 — run in parallel after T011:
-T014 (Hero.tsx)  +  T015 (Hero.module.css)  then  T016 (ThemeContext)  →  T017 (page.tsx shell)
+# Phase 3 — run in parallel after Foundational:
+T014 (Hero.tsx)  +  T015 (Hero.module.css)  →  T017 (page.tsx shell)
 
 # Phase 4 — run in parallel after Foundational:
 T018 (ProjectCard.tsx)  +  T019 (GitHubButton.tsx)  +  T020 (projects.module.css)
