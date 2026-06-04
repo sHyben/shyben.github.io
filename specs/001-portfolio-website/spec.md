@@ -186,7 +186,7 @@ Contact section and verify email, LinkedIn, GitHub, and location cards are all p
    coming soon" tooltip is displayed instead of a silent failure.
 3. **Given** the visitor navigates to Contact, **When** the section renders, **Then** four
    contact cards are visible: Email (hyben.simon@gmail.com), LinkedIn, GitHub, and Location
-   (Bratislava, Slovakia).
+   (Bratislava, Slovakia). No contact form is present.
 
 ---
 
@@ -208,7 +208,9 @@ Contact section and verify email, LinkedIn, GitHub, and location cards are all p
 ### Functional Requirements
 
 - **FR-001**: The site MUST display a bold editorial hero section with Šimon's name in the rust
-  accent colour and staggered entrance animations for hero elements.
+  accent colour and staggered entrance animations for hero elements. All entrance animations
+  MUST be driven by a single, shared animation utility (Framer Motion approved); mixing
+  multiple animation libraries is prohibited.
 - **FR-002**: The site MUST provide a persistent navigation bar linking to: Projects, About,
   Resume/CV, and Contact.
 - **FR-003**: The site MUST include a light/dark mode toggle that persists via `localStorage`
@@ -228,15 +230,21 @@ Contact section and verify email, LinkedIn, GitHub, and location cards are all p
   the 5-year bio, and a skills grid organised by category.
 - **FR-012**: The site MUST provide a Resume/CV download button linked to `./resume.pdf`; if
   the file is absent, the button MUST be disabled with a "Resume coming soon" tooltip.
-- **FR-013**: The Contact section MUST display four info cards: Email, LinkedIn, GitHub, Location.
+- **FR-013**: The Contact section MUST display exactly four info cards — Email, LinkedIn, GitHub,
+  Location — with no contact form. The email card MUST link to `mailto:hyben.simon@gmail.com`.
 - **FR-014**: The footer MUST include navigation links and copyright information.
 - **FR-015**: The site MUST be fully responsive across mobile (≥ 320 px), tablet (≥ 768 px),
   and desktop (≥ 1280 px) viewports.
 - **FR-016**: All images MUST have descriptive alternative text meeting WCAG 2.1 AA standards.
 - **FR-017**: All personal content (bio, projects, skills, contact info) MUST be maintained in
-  a single data file; no code changes required to update content.
+  a single data file; no code changes required to update content. The initial data file MUST
+  include 2 detailed, anonymised-real projects (grounded in Šimon's Erste Group / Azure / AI
+  background with realistic impact statements) and 3 clearly-labelled generic placeholder
+  projects with instruction comments explaining how to replace them.
 - **FR-018**: The site MUST be deployable as a fully static site to GitHub Pages at
-  `shyben.github.io` with no server-side rendering at runtime.
+  `shyben.github.io` with no server-side rendering at runtime. Each project detail page MUST
+  be pre-generated as a standalone HTML file at build time (e.g., `/projects/[slug]/index.html`)
+  so that direct URLs resolve without a server and work correctly after a browser refresh.
 
 ### Key Entities
 
@@ -280,10 +288,19 @@ Contact section and verify email, LinkedIn, GitHub, and location cards are all p
   placeholder is acceptable initially.
 - The resume PDF (`resume.pdf`) will be placed in `public/` before launch; the "coming soon"
   disabled button covers the absent-file case.
-- Contact form (if included beyond card links) will route via Formspree or equivalent
-  zero-backend service; a `mailto:` link is acceptable as fallback.
+- The Contact section uses info cards only (no contact form). The email card links directly
+  to `mailto:hyben.simon@gmail.com`.
 - Mobile browser support targets the two latest versions of Chrome, Firefox, and Safari on
   iOS/Android.
 - No analytics, cookie consent banners, or GDPR tooling required for the initial version.
 - The Claude Design prototype at the URL in the Design Reference section is the authoritative
   visual specification; any ambiguity in written requirements defers to the visual design.
+
+## Clarifications
+
+### Session 2026-06-04
+
+- Q: Should the Contact section include a contact form in addition to the 4 info cards? → A: Cards only — no contact form. Email card links to `mailto:hyben.simon@gmail.com`.
+- Q: How should project detail pages be served on static GitHub Pages? → A: Pre-generated static HTML per project at build time (`/projects/[slug]/index.html`); direct URLs and browser refresh must work without a server.
+- Q: Should entrance animations use pure CSS or a JS animation library? → A: Framer Motion (single shared animation utility; no other animation libraries permitted alongside it).
+- Q: What content should the 5 sample projects use? → A: Mix — 2 anonymised-real projects grounded in Šimon's Erste Group/Azure/AI background with realistic impact statements, plus 3 generic placeholder projects with clear replacement instructions in comments.
