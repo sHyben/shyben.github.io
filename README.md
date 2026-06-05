@@ -1,7 +1,9 @@
 # Šimon Hyben — Portfolio
 
-[![Deploy to GitHub Pages](https://github.com/shyben/shyben.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/shyben/shyben.github.io/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://img.shields.io/github/actions/workflow/status/sHyben/shyben.github.io/deploy.yml?branch=master&label=Deploy%20to%20GitHub%20Pages&logo=github)](https://github.com/sHyben/shyben.github.io/actions/workflows/deploy.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue?logo=typescript)](https://www.typescriptlang.org)
 
 Personal portfolio website for **Šimon Hyben**, Full-Stack Software Developer.
 Built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
