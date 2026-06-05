@@ -1,0 +1,182 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background-color 0.15s ease;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--color-rust);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  margin-right: auto;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.navLink {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color var(--transition-hover);
+}
+
+.navLink:hover {
+  color: var(--color-rust);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.themeToggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: border-color var(--transition-hover), background-color var(--transition-hover);
+}
+
+.themeToggle:hover {
+  border-color: var(--color-rust);
+  background: var(--color-surface);
+}
+
+/* Resume button styles (populated by T031) */
+.resumeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--color-rust);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-hover), opacity var(--transition-hover);
+  white-space: nowrap;
+}
+
+.resumeBtn:hover {
+  background: var(--color-rust-hover);
+}
+
+.resumeBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-text-muted);
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip [role='tooltip'] {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.tooltip:hover [role='tooltip'],
+.tooltip:focus-within [role='tooltip'] {
+  opacity: 1;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Mobile menu */
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.mobileLink {
+  padding: 1rem 1.5rem;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition-hover);
+}
+
+.mobileLink:hover {
+  background: var(--color-surface);
+  color: var(--color-rust);
+}
+
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
